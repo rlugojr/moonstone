@@ -149,7 +149,12 @@ var Scrollable = {
 	},
 	isVisibleChild: kind.inherit(function (sup) {
 		return function (event) {
-			return sup.apply(this, arguments);
+			if (sup === utils.nop) {
+				return false;
+			}
+			else {
+				return sup.apply(this, arguments);
+			}			
 		};
 	}),
 
